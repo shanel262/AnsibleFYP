@@ -1,0 +1,16 @@
+---
+   # - name: Add Node apt key
+   #   apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+
+   # - name: Add Node repo
+   #   apt_repository: repo=
+
+   - name: Updating apt cache
+     apt:
+       update_cache: yes
+
+   - name: Install Nodejs
+     apt: name=nodejs state=present
+
+   - name: Install NPM
+     apt: name=npm state=present

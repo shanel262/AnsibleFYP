@@ -1,20 +1,39 @@
 ---
+ # - hosts: localhost
+ #   connection: local
+ #   gather_facts: false
+ #   user: root
+ #   pre_tasks:
+ #    - include_vars: ~/Documents/AnsibleFYP/roles/mongodb/vars/vars.yml
+ #   roles:
+ #    - provision-instance
+
+ # - hosts: databases
+ #   gather_facts: false
+ #   become: yes
+ #   pre_tasks:
+ #   - name: Install python for Ansible
+ #     become: yes
+ #     raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+ #   roles: 
+ #   - mongodb
+ #   - influxdb
+
  - hosts: localhost
    connection: local
    gather_facts: false
    user: root
    pre_tasks:
-    - include_vars: ~/Documents/AnsibleFYP/roles/mongodb/vars/vars.yml
+    - include_vars: ~/Documents/AnsibleFYP/roles/dockerwatch-web/vars/vars.yml
    roles:
     - provision-instance
 
- - hosts: databases
+ - hosts: dockerwatch-web
    gather_facts: false
    become: yes
    pre_tasks:
-   - name: Install python for Ansible
+   - name: Install Python for Ansible
      become: yes
      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-   roles: 
-   - mongodb
-   - influxdb
+   roles:
+   - dockerwatch-web
