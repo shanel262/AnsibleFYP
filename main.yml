@@ -8,11 +8,13 @@
    roles:
     - provision-instance
 
- - hosts: all
+ - hosts: databases
    gather_facts: false
+   become: yes
    pre_tasks:
    - name: Install python for Ansible
      become: yes
      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
    roles: 
    - mongodb
+   - influxdb
