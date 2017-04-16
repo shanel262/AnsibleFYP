@@ -16,6 +16,11 @@
      become: true
      apt: name=mongodb-org state=latest
 
+   - name: Configure MongoDB
+     template:
+       src: "mongod.conf"
+       dest: "/etc/mongod.conf"
+
    - name: Restart MongoDB
      become: true
      service: name=mongod state=restarted

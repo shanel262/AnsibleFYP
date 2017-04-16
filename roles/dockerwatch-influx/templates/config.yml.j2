@@ -1,0 +1,4 @@
+default:
+  {% for ip in groups['databases'] %}
+  host: {{ ip }}
+  {% endfor %}

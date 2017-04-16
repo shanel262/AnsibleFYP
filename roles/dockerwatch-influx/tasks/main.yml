@@ -11,19 +11,19 @@
    - name: Install NPM
      apt: name=npm state=present
 
-   - name: Clone dockerwatch-web
+   - name: Clone dockerwatch-influx
      git:
-       repo: "https://github.com/shanel262/dockerwatch-web"
-       dest: /home/dockerwatch-web
+       repo: "https://github.com/shanel262/dockerwatch-influx"
+       dest: /home/dockerwatch-influx
 
    - name: NPM install node_modules
      npm:
-       path: /home/dockerwatch-web
+       path: /home/dockerwatch-influx
 
    - name: Upload config.yml
      template:
        src: "config.yml.j2"
-       dest: "/home/dockerwatch-web/config.yml"
+       dest: "/home/dockerwatch-influx/config.yml"
 
    - name: Install Forever
      npm: name=forever global=yes state=present
@@ -32,6 +32,6 @@
      shell: ln -s /usr/bin/nodejs /usr/bin/node
 
    - name: Start Nodejs service
-     shell: nohup forever app.js &
+     shell: nohup forever server.js &
      args:
-       chdir: /home/dockerwatch-web
+       chdir: /home/dockerwatch-influx

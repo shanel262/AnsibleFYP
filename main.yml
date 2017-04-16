@@ -1,23 +1,23 @@
 ---
- # - hosts: localhost
- #   connection: local
- #   gather_facts: false
- #   user: root
- #   pre_tasks:
- #    - include_vars: ~/Documents/AnsibleFYP/roles/mongodb/vars/vars.yml
- #   roles:
- #    - provision-instance
+ - hosts: localhost
+   connection: local
+   gather_facts: false
+   user: root
+   pre_tasks:
+    - include_vars: ~/Documents/AnsibleFYP/roles/mongodb/vars/vars.yml
+   roles:
+    - provision-instance
 
- # - hosts: databases
- #   gather_facts: false
- #   become: yes
- #   pre_tasks:
- #   - name: Install python for Ansible
- #     become: yes
- #     raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
- #   roles: 
- #   - mongodb
- #   - influxdb
+ - hosts: databases
+   gather_facts: false
+   become: yes
+   pre_tasks:
+   - name: Install python for Ansible
+     become: yes
+     raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+   roles: 
+   - mongodb
+   - influxdb
 
  - hosts: localhost
    connection: local
@@ -37,3 +37,41 @@
      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
    roles:
    - dockerwatch-web
+
+ - hosts: localhost
+   connection: local
+   gather_facts: false
+   user: root
+   pre_tasks:
+    - include_vars: ~/Documents/AnsibleFYP/roles/dockerwatch-influx/vars/vars.yml
+   roles:
+    - provision-instance
+
+ - hosts: dockerwatch-influx
+   gather_facts: false
+   become: yes
+   pre_tasks:
+   - name: Install Python for Ansible
+     become: yes
+     raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+   roles:
+   - dockerwatch-influx
+
+ - hosts: localhost
+   connection: local
+   gather_facts: false
+   user: root
+   pre_tasks:
+    - include_vars: ~/Documents/AnsibleFYP/roles/haproxy/vars/vars.yml
+   roles:
+    - provision-instance
+
+ - hosts: haproxy
+   gather_facts: false
+   become: yes
+   pre_tasks:
+   - name: Install Python for Ansible
+     become: yes
+     raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+   roles:
+   - haproxy
