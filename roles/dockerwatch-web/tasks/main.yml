@@ -10,7 +10,9 @@
        update_cache: yes
 
    - name: Install Nodejs
-     apt: name=nodejs state=present
+     apt: 
+       name: nodejs=4.2.6
+       state: present
 
    - name: Install NPM
      apt: name=npm state=present
