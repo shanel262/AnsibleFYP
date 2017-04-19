@@ -32,6 +32,6 @@
      shell: ln -s /usr/bin/nodejs /usr/bin/node
 
    - name: Start Nodejs service
-     shell: nohup forever app.js &
+     shell: nohup forever start app.js
      args:
        chdir: /home/dockerwatch-web

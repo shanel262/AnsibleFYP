@@ -30,14 +30,6 @@ frontend localnodes
 backend nodes
 	mode http
 	balance roundrobin
-	{% for ip in groups['dockerwatch-web'] %}
+{% for ip in groups['dockerwatch-web'] %}
 	server web {{ ip }}:4000 check
-	{% endfor %}
-
-listen stats *:1936
-    mode http
-    log global
-    stats enable
-    stats uri /
-    stats hide-version
-    stats auth someuser:password
+{% endfor %}
