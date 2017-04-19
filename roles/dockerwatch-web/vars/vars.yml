@@ -8,4 +8,4 @@ ec2_tag_Name: "Dockerwatch-web"
 ec2_tag_Type: "dockerwatch-web"
 ec2_tag_Environment: "production"
 ec2_volume_size: 8
-ec2_instance_count: 1
+ec2_instance_count: 2
