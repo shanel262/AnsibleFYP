@@ -17,5 +17,5 @@
    - name: Create test database
      influxdb_database: 
          hostname: "127.0.0.1"
-         database_name: "test"
+         database_name: "dockerwatch"
          state: present
