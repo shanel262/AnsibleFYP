@@ -16,6 +16,11 @@
        repo: "https://github.com/shanel262/dockerwatch-web"
        dest: /home/dockerwatch-web
 
+   - name: Use older dockerwatch-web commit
+     shell: git checkout c90f782
+     args:
+       chdir: /home/dockerwatch-web
+
    - name: NPM install node_modules
      npm:
        path: /home/dockerwatch-web
